@@ -1,0 +1,1 @@
+This repo includes all of my classwork and homework from the App Academy

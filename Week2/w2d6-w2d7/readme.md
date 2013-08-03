@@ -1,0 +1,1 @@
+TODO: Add more validation to player class, re-organize the poker class, fix folding functionality on first betting round, add more tests, clean up OO in general (make everything less of a disaster).  

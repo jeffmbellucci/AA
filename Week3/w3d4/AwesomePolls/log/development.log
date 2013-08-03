@@ -1,0 +1,332 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateUsers (20130801181529)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130801181529')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePolls (20130801181540)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "polls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "title" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_polls_on_author_id" ON "polls" ("author_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801181540')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateQuestions (20130801181554)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "poll_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_questions_on_poll_id" ON "questions" ("poll_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130801181554')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePossibleResponses (20130801181623)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "possible_responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "question_id" integer, "possible_response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_possible_responses_on_question_id" ON "possible_responses" ("question_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801181623')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateResponses (20130801181633)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "response_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801181633')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateResponses (20130801181633)
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "user_responses"[0m
+SQLite3::SQLException: no such table: user_responses: DROP TABLE "user_responses"
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateResponses (20130801181633)
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "responses"[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130801181633'
+  [1m[36m (140.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130801181529)
+Migrating to CreatePolls (20130801181540)
+Migrating to CreateQuestions (20130801181554)
+Migrating to CreatePossibleResponses (20130801181623)
+Migrating to CreateResponses (20130801181633)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "user_responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "response_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801181633')[0m
+  [1m[35m (5.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130801181529)
+Migrating to CreatePolls (20130801181540)
+Migrating to CreateQuestions (20130801181554)
+Migrating to CreatePossibleResponses (20130801181623)
+Migrating to CreateResponses (20130801181633)
+Migrating to UpdatePossibleResponses (20130801185527)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130801181529)
+Migrating to CreatePolls (20130801181540)
+Migrating to CreateQuestions (20130801181554)
+Migrating to CreatePossibleResponses (20130801181623)
+Migrating to CreateResponses (20130801181633)
+Migrating to UpdatePossibleResponses (20130801185527)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "possible_responses"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "question_id" integer, "response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801185527')[0m
+  [1m[35m (5.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (10.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (24.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00], ["email", "jeffmbellucci@gmail.com"], ["name", "Jeff"], ["updated_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00], ["email", "foo@bar.com"], ["name", "Anteater"], ["updated_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00], ["email", "bar@foo.com"], ["name", "Ant"], ["updated_at", Thu, 01 Aug 2013 21:21:23 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:21:43 UTC +00:00], ["email", "jeffmbellucci@gmail.com"], ["name", "Jeff"], ["updated_at", Thu, 01 Aug 2013 21:21:43 UTC +00:00]]
+SQLite3::ConstraintException: column email is not unique: INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00], ["email", "jeffmbellucci@gmail.com"], ["name", "Jeff"], ["updated_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00], ["email", "foo@bar.com"], ["name", "Anteater"], ["updated_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00], ["email", "bar@foo.com"], ["name", "Ant"], ["updated_at", Thu, 01 Aug 2013 21:24:15 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "polls" ("author_id", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?)[0m  [["author_id", 1], ["created_at", Thu, 01 Aug 2013 21:25:41 UTC +00:00], ["title", "Favorite Colors"], ["updated_at", Thu, 01 Aug 2013 21:25:41 UTC +00:00]]
+  [1m[35m (5.5ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "questions" ("body", "created_at", "poll_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["body", "What is your favorite color?"], ["created_at", Thu, 01 Aug 2013 21:26:17 UTC +00:00], ["poll_id", 1], ["updated_at", Thu, 01 Aug 2013 21:26:17 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "questions" ("body", "created_at", "poll_id", "updated_at") VALUES (?, ?, ?, ?)  [["body", "Why?"], ["created_at", Thu, 01 Aug 2013 21:26:17 UTC +00:00], ["poll_id", 1], ["updated_at", Thu, 01 Aug 2013 21:26:17 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:26:49 UTC +00:00], ["question_id", 1], ["response", "blue"], ["updated_at", Thu, 01 Aug 2013 21:26:49 UTC +00:00]]
+  [1m[35m (171.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:26:49 UTC +00:00], ["question_id", 1], ["response", "green"], ["updated_at", Thu, 01 Aug 2013 21:26:49 UTC +00:00]]
+  [1m[36m (163.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 1], ["response", "red"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[35m (142.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 1], ["response", "yellow"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[36m (131.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 1], ["response", "orange"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 2], ["response", "Because it is pretty"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[36m (29.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 2], ["response", "Because my best friend likes this color"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[35m (153.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00], ["question_id", 2], ["response", "I don't know"], ["updated_at", Thu, 01 Aug 2013 21:26:50 UTC +00:00]]
+  [1m[36m (131.0ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 1], ["response", "blue"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[35m (5.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 1], ["response", "green"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 1], ["response", "red"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 1], ["response", "yellow"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 1], ["response", "orange"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 2], ["response", "Because it is pretty"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 2], ["response", "Because my best friend likes this color"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00], ["question_id", 2], ["response", "I don't know"], ["updated_at", Thu, 01 Aug 2013 21:27:20 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 1], ["response", "blue"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[35m (5.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 1], ["response", "green"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 1], ["response", "red"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 1], ["response", "yellow"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 1], ["response", "orange"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 2], ["response", "Because it is pretty"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 2], ["response", "Because my best friend likes this color"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["question_id", 2], ["response", "I don't know"], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["response_id", 5], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["user_id", 2]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["response_id", 3], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["user_id", 3]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["response_id", 1], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["user_id", 2]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["response_id", 3], ["updated_at", Thu, 01 Aug 2013 21:27:39 UTC +00:00], ["user_id", 3]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.8ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:32:01 UTC +00:00], ["response_id", 5], ["updated_at", Thu, 01 Aug 2013 21:32:01 UTC +00:00], ["user_id", 2]]
+  [1m[35m (176.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["response_id", 6], ["updated_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["user_id", 2]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["response_id", 1], ["updated_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["user_id", 3]]
+  [1m[35m (218.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["response_id", 8], ["updated_at", Thu, 01 Aug 2013 21:32:02 UTC +00:00], ["user_id", 3]]
+  [1m[36m (89.2ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.8ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  DROP TABLE "polls"
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "polls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "title" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_polls_on_author_id" ON "polls" ("author_id")
+  [1m[36m (1.7ms)[0m  [1mDROP TABLE "questions"[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "poll_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_questions_on_poll_id" ON "questions" ("poll_id")[0m
+  [1m[35m (1.5ms)[0m  DROP TABLE "responses"
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "question_id" integer, "response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")
+  [1m[36m (1.4ms)[0m  [1mDROP TABLE "user_responses"[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "user_responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "response_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["email", "jeffmbellucci@gmail.com"], ["name", "Jeff"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (5.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["email", "foo@bar.com"], ["name", "Anteater"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["email", "bar@foo.com"], ["name", "Ant"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "polls" ("author_id", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?)  [["author_id", 1], ["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["title", "Favorite Colors"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "questions" ("body", "created_at", "poll_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["body", "What is your favorite color?"], ["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["poll_id", 1], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "questions" ("body", "created_at", "poll_id", "updated_at") VALUES (?, ?, ?, ?)  [["body", "Why?"], ["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["poll_id", 1], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 1], ["response", "blue"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 1], ["response", "green"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 1], ["response", "red"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 1], ["response", "yellow"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 1], ["response", "orange"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 2], ["response", "Because it is pretty"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 2], ["response", "Because my best friend likes this color"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "responses" ("created_at", "question_id", "response", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["question_id", 2], ["response", "I don't know"], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["response_id", 5], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["user_id", 2]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["response_id", 6], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["user_id", 2]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["response_id", 1], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["user_id", 3]]
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "user_responses" ("created_at", "response_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["response_id", 8], ["updated_at", Thu, 01 Aug 2013 21:35:48 UTC +00:00], ["user_id", 3]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml

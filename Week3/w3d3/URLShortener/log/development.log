@@ -1,0 +1,259 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateTable (20130731210116)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "alias" varchar(255), "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "long_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "short_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url" varchar(255), "long_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "visits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url_id" integer, "user_id" integer, "visit_time" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "short_url_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "tagged_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag_id" integer, "short_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130731210116')[0m
+  [1m[35m (5.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateTable (20130731210116)
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "tagged_urls"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "tags"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "comments"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "visits"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "short_urls"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "long_urls"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130731210116'
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "alias" varchar(255), "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "long_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "short_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url" varchar(255), "long_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "users_short_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "short_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "visits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url_id" integer, "user_id" integer, "visit_time" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "short_url_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "tagged_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag_id" integer, "short_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130731210116')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateTable (20130731210116)
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "tagged_urls"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "tags"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "comments"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "visits"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "users_short_urls"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "short_urls"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "long_urls"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "users"
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130731210116'[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "alias" varchar(255), "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "long_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "short_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url" varchar(255), "long_url_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "visits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "short_url_id" integer, "user_id" integer, "visit_time" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "short_url_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "tagged_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag_id" integer, "short_url_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130731210116')[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "DucKiller"], ["created_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00], ["email", "ihd@hotmail.com"], ["updated_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)  [["alias", "thatSignal"], ["created_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00], ["email", "signal@sig.com"], ["updated_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "coder"], ["created_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00], ["email", "coder@aa.com"], ["updated_at", Wed, 31 Jul 2013 21:58:26 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.7ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "DucKiller"], ["created_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00], ["email", "ihd@hotmail.com"], ["updated_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00]]
+  [1m[35m (5.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)  [["alias", "thatSignal"], ["created_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00], ["email", "signal@sig.com"], ["updated_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "coder"], ["created_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00], ["email", "coder@aa.com"], ["updated_at", Wed, 31 Jul 2013 21:59:05 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "DucKiller"], ["created_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00], ["email", "ihd@hotmail.com"], ["updated_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00]]
+  [1m[35m (5.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)  [["alias", "thatSignal"], ["created_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00], ["email", "signal@sig.com"], ["updated_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("alias", "created_at", "email", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alias", "coder"], ["created_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00], ["email", "coder@aa.com"], ["updated_at", Wed, 31 Jul 2013 21:59:27 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "short_urls" ("created_at", "long_url_id", "short_url", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 31 Jul 2013 21:59:28 UTC +00:00], ["long_url_id", 1], ["short_url", "www.a.com"], ["updated_at", Wed, 31 Jul 2013 21:59:28 UTC +00:00], ["user_id", 1]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+Migrating to CreateLongUrls (20130731221932)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "long_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "long_urls" already exists: CREATE TABLE "long_urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+Migrating to CreateLongUrls (20130731221932)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130731221932')
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20130731230441)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130731230441')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "short_urls" ("created_at", "long_url_id", "short_url", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["long_url_id", 1], ["short_url", "www.a.com"], ["updated_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["user_id", 1]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "short_urls" ("created_at", "long_url_id", "short_url", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["created_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["long_url_id", 2], ["short_url", "www.b.com"], ["updated_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["user_id", 1]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "short_urls" ("created_at", "long_url_id", "short_url", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["long_url_id", 1], ["short_url", "www.c.com"], ["updated_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["user_id", 1]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "long_urls" ("created_at", "updated_at", "url") VALUES (?, ?, ?)  [["created_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["updated_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["url", "http://google.com"]]
+  [1m[36m (119.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "long_urls" ("created_at", "updated_at", "url") VALUES (?, ?, ?)[0m  [["created_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["updated_at", Thu, 01 Aug 2013 00:41:47 UTC +00:00], ["url", "http://reddit.com"]]
+  [1m[35m (86.5ms)[0m  commit transaction
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.7ms)[0m  [1mINSERT INTO "comments" ("body", "created_at", "short_url_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["body", "OMG this is the best website ever"], ["created_at", Thu, 01 Aug 2013 00:51:04 UTC +00:00], ["short_url_id", 1], ["updated_at", Thu, 01 Aug 2013 00:51:04 UTC +00:00], ["user_id", 1]]
+  [1m[35m (5.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("body", "created_at", "short_url_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["body", "I found the edge of the internet!"], ["created_at", Thu, 01 Aug 2013 00:51:04 UTC +00:00], ["short_url_id", 1], ["updated_at", Thu, 01 Aug 2013 00:51:04 UTC +00:00], ["user_id", 2]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.7ms)[0m  [1mINSERT INTO "comments" ("body", "created_at", "short_url_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["body", "OMG this is the worst website ever"], ["created_at", Thu, 01 Aug 2013 00:56:42 UTC +00:00], ["short_url_id", 3], ["updated_at", Thu, 01 Aug 2013 00:56:42 UTC +00:00], ["user_id", 1]]
+  [1m[35m (5.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "comments" ("body", "created_at", "short_url_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["body", "I found the edge of the internet!"], ["created_at", Thu, 01 Aug 2013 00:56:42 UTC +00:00], ["short_url_id", 3], ["updated_at", Thu, 01 Aug 2013 00:56:42 UTC +00:00], ["user_id", 2]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTable (20130731210116)
+Migrating to CreateLongUrls (20130731221932)
+Migrating to CreateComments (20130731230441)
+Migrating to CreateVisits (20130801141144)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130801141144')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTags (20130801155203)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130801155203')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateTagUrls (20130801155701)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130801155701')
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "good"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "tags" ("tag") VALUES (?)  [["tag", "bad"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "ugly"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tags" ("tag") VALUES (?)  [["tag", "nsfw"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "cute"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "good"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tags" ("tag") VALUES (?)  [["tag", "bad"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "ugly"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tags" ("tag") VALUES (?)  [["tag", "nsfw"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tags" ("tag") VALUES (?)[0m  [["tag", "cute"]]
+  [1m[35m (2.9ms)[0m  commit transaction

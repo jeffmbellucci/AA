@@ -1,0 +1,65 @@
+Tables:
+long_url
+
+
+short_url
+ long_url_id
+ timestamps
+ user_id
+
+
+user
+  id
+  email
+  timestamp
+
+
+traffic(short_url to user (visits)
+timestamps
+
+
+
+
+
+comments
+  (author) user_id
+  url_id
+  body
+  timestamps
+
+tags
+  id
+  word
+
+
+tags_long_url
+  tag_id
+  long_url
+  timestamps
+
+
+
+
+
+Notes:
+use SecureRandom.urlsave_base64
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*eventually we will need the launchy gem
+

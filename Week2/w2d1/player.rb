@@ -2,33 +2,65 @@
 class Player
   attr_reader :name
 
-  def initialize(game, name = "goose")
+  def initialize(game)
     @game = game
-    @name = name
+    @name = get_name
   end
 
   def make_move
-    coordinates = get_coords
+  	@game.board.display
+    coords = get_coords
+    @game.pause if coords == 'pause'
     action = get_action
+    @game.pause if action == 'pause'
     if action == "r"
-      step_on(coordinates)
+      step_on(coords)
     else
-      flag(coordinates)
+      flag(coords)
     end
+  end
+  
+  def get_name #built out like this in case we want validation in the future
+    have_name = false
+    until have_name
+      puts "Player, What is your name?"
+      name = gets.chomp.capitalize
+      have_name = true
+    end
+
+    name
   end
 
   def get_action
-    #TODO: validate
-    puts "#{@name}, (f)lag or (r)eveal ?"
-    action = gets.chomp
+    have_action = false
+    until have_action
+      puts "#{@name}, please enter an action (r)eveal, (f)lag"
+      action = gets.chomp.downcase
+      if pause?(action) 
+      	@game.main_menu 
+      	return 'pause' 
+      end
+      have_action = true if ['r', 'f'].include?(action)
+    end
+    action
   end
 
+  def pause?(input)
+  	input.downcase == "p"
+  end
+  
   def get_coords
     have_coords = false
 
     until have_coords
       puts "#{@name}, please select a tile (x, y)"
-      coords = gets.chomp.split(",").map { |coordinate| coordinate.strip.to_i }
+      input = gets.chomp
+      if pause?(input) 
+      	@game.main_menu 
+      	return 'pause' 
+      end
+      coords = input.split(",").map { |coordinate| coordinate.strip.to_i }
+      #TODO: fix that this returns 0,0 for coords that are not numbers.
       have_coords = @game.valid_position?(coords)
     end
 
@@ -36,11 +68,11 @@ class Player
   end
 
   def step_on(pos)
-    @game.game_board.step_on(pos) ##making..
+    @game.board.step_on(pos)
   end
 
   def flag(pos)
-    @game.game_board.flag(pos) ## making..
+    @game.board.flag(pos)
   end
 
 end

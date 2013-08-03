@@ -1,0 +1,12 @@
+Answers to Exercises:
+
+
+What is the difference between belongs_to and has_one?
+a. The difference between belongs_to and has_one is that
+   belongs_to is in the class which refers to the database table with the foreign key of the association
+	 while
+	 has_one is in the class which refers to the database table with the primary key of the association
+
+
+Why would a belongs_to_many association not make sense, when a has_many does?
+b. Because in order to belong_to_many you would have to have multiple id's written in your foreign key column.

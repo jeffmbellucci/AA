@@ -1,0 +1,1 @@
+Open mines.rb in your terminal to play minesweeper
